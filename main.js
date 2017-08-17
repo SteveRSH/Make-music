@@ -4,38 +4,60 @@
 
 // 1. First select and store the elements you'll be working with
 // 2. Create your `submit` event for getting the user's search term
+// 3. Create your `fetch` request that is called after a submission
+// 4. Create a way to append the fetch results to your page
+// 5. Create a way to listen for a click that will play the song in the audio play
 
 //////////////////////////////////////////////////////////////////////////
 //created an event listener for the search text and button. Need to link them in order for them to work
-let searchByName = document.querySelector("#searchByName");
+let musicSearch = document.querySelector("#searching");
+
+
 // searching.addEventListener("click", function() {input.innerHTML = "";});
-searchByName.addEventListener("click", function(searching) {input.innerHTML = "searching";});
+musicSearch.addEventListener("click", function(searching) {
+	searching.preventDefault();
+
+// create a variable called searching
+// assign searching to the value of the input box
+// make the fetch happen
+// let searching = "Search"
+let searchByName = document.querySelector("#searchByName").value;
+fetch(`https:itunes.apple.com/search?term=${searchByName}&limit=12`)
 
 
-
-
-// fetch('https://itunes.apple.com/search?term=sting&limit=6')
-
-fetch('https:itunes.apple.com/search?term=${searching}&limit=12')
 
 //everything below is in working order
 .then(function(goodSound) {
+
 	// Convert to JSON
 	return goodSound.json();
 }).then(function(goodSound) {
+	// logic to make the results show up in the browser
+let result = document.querySelector(".results");
 	//`goodSound` is a JavaScript object
 	console.log(goodSound);
-
+let searching = "";
 for (let i = 0; i < goodSound.results.length; i++) {
-	console.log(goodSound.results[i].collectionName)
-	console.log(goodSound.results[i].artistName)
-	console.log(goodSound.results[i].artworkURL100)
-	console.log(goodSound.results[i].trackName);
-
-
-
+	let Musiq = `
+	${goodSound.results[i].collectionName}
+	${goodSound.results[i].artistName}
+	${goodSound.results[i].artworkURL100}
+	${goodSound.results[i].trackName}
+	`;
+searching += Musiq;
 }
+result.innerHTML = "searching";
 });
+
+
+});
+
+
+
+// input.innerHTML = "searching";
+// fetch('https://itunes.apple.com/search?term=sting&limit=6')
+
+
 
 
 //This returns the artist name
@@ -44,9 +66,7 @@ for (let i = 0; i < goodSound.results.length; i++) {
 // console.log(goodSound.results[1].collectionName);
 //https:itunes.apple.com/search?parameterkeyvalue
 
-// 3. Create your `fetch` request that is called after a submission
-// 4. Create a way to append the fetch results to your page
-// 5. Create a way to listen for a click that will play the song in the audio play
+
 
 // let section = document.getElementsByClassName('results')
 // let search = document.getElementById('music-search')
