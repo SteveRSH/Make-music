@@ -22,7 +22,7 @@ musicSearch.addEventListener("click", function(searching) {
 // make the fetch happen
 // let searching = "Search"
 let searchByName = document.querySelector("#searchByName").value;
-fetch(`https:itunes.apple.com/search?term=${searchByName}&limit=12`)
+fetch(`https:itunes.apple.com/search?term=${searchByName}&limit=6`)
 
 
 
@@ -33,6 +33,9 @@ fetch(`https:itunes.apple.com/search?term=${searchByName}&limit=12`)
 	return goodSound.json();
 }).then(function(goodSound) {
 	// logic to make the results show up in the browser
+
+
+	//
 let result = document.querySelector(".results");
 	//`goodSound` is a JavaScript object
 	console.log(goodSound);
@@ -41,12 +44,15 @@ for (let i = 0; i < goodSound.results.length; i++) {
 	let Musiq = `
 	${goodSound.results[i].collectionName}
 	${goodSound.results[i].artistName}
-	${goodSound.results[i].artworkURL100}
+	<img src="${goodSound.results[i].artworkUrl100}">
 	${goodSound.results[i].trackName}
 	`;
+	//ADD button after track name
+	//add event listener for the button (console.log to make sure it works)
+	//change functionality on the audtio tag in html in src=""
 searching += Musiq;
 }
-result.innerHTML = "searching";
+result.innerHTML = searching;
 });
 
 
