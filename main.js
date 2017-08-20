@@ -8,6 +8,9 @@
 // 4. Create a way to append the fetch results to your page
 // 5. Create a way to listen for a click that will play the song in the audio play
 
+
+//Need to be able to enter a new 
+
 //////////////////////////////////////////////////////////////////////////
 //created an event listener for the search text and button. Need to link them in order for them to work
 let musicSearch = document.querySelector("#searching");
@@ -22,7 +25,7 @@ musicSearch.addEventListener("click", function(searching) {
 // make the fetch happen
 // let searching = "Search"
 let searchByName = document.querySelector("#searchByName").value;
-fetch(`https:itunes.apple.com/search?term=${searchByName}&limit=6`)
+fetch(`https:itunes.apple.com/search?term=${searchByName}&limit=20`)
 
 
 
@@ -36,23 +39,47 @@ fetch(`https:itunes.apple.com/search?term=${searchByName}&limit=6`)
 
 
 	//
+
+	//added paragraph tags in order for images and names to show on different lines.
+
 let result = document.querySelector(".results");
 	//`goodSound` is a JavaScript object
 	console.log(goodSound);
 let searching = "";
 for (let i = 0; i < goodSound.results.length; i++) {
 	let Musiq = `
-	${goodSound.results[i].collectionName}
-	${goodSound.results[i].artistName}
-	<img src="${goodSound.results[i].artworkUrl100}">
-	${goodSound.results[i].trackName}
-	`;
+	<div id="tryThis">
+	<p><img src="${goodSound.results[i].artworkUrl100}"></p>
+	<p>Name:  ${goodSound.results[i].artistName}</p>
+	<p>Album name:  ${goodSound.results[i].collectionName}</p>
+	<p>Song name:  ${goodSound.results[i].trackName}</p>
+
+
+	<button class="play">Play Music</button></div>`;
+
+
+	// document.getElementById("theButton").addEventListener("click", function(){
+    // document.getElementById("demo").innerHTML
+
 	//ADD button after track name
 	//add event listener for the button (console.log to make sure it works)
-	//change functionality on the audtio tag in html in src=""
+	//change functionality on the audio tag in html in src=""
 searching += Musiq;
 }
+
 result.innerHTML = searching;
+
+//NOTE querySelectorAll and querySelector gets elements from the DOM
+let buttons = document.querySelectorAll('.play');
+
+for (let i = 0; i < buttons.length; i++) {
+	buttons[i].addEventListener('click', function(){
+		let letsPlay = document.querySelector('.music-player');
+		letsPlay.src = goodSound.results[i].previewUrl;
+		letsPlay.play();
+	});
+}
+
 });
 
 

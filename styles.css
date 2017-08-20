@@ -1,10 +1,69 @@
-body {
+/*IGNORE used html instead of body for the background image/
+/*body {
   background-color: #60d9f1;
-  /*background: url("images/wallpapercave.jpg");*/
+  background: url("images/wallpapercave.jpg");
+  background-repeat: no-repeat;
+}*/
+
+/*NOTE:
+
+*/
+
+/*Change the image from repeating: DONE (CSS Tricks */
+html {
+  background: url("images/wallpapercave.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+img {
+   /*padding:1px;*/
+   /*inspect element: padding-right was not necessary*/
+   /*padding-right: 50px;*/
+   margin-right: 25%;
+   border:1px solid #021a40;
+   background-color:#ff0;
+   width: auto;
+}
+
+#tryThis {
+  border:1px solid orange;
+  margin-top: 15px;
+  margin-right: 15px;
+  width: 40%;
+  display: table-cell;
+  color: grey;
+  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
+
+.results {
+  width: auto;
+  flex-wrap: wrap;
+  display: flex;
+}
+
+
+
+/*using inspect element made this easier and saved time*/
+button {
+  background-color: red;
+  color: white;
+  margin-left: 50%;
+  /*width: 5px;*/
 }
 
 h1 {
-  color: white;
+  text-align: center;
+  color: silver;
+  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
 }
 
 .selection {background-color: white;}
+
+p {color: white;
+   /*text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;}*/
+
+#test {font-size: 18px;
+      color: red;}
